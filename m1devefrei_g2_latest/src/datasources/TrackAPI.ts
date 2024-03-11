@@ -52,7 +52,7 @@ export class TrackAPI extends RESTDataSource {
     if (data.films.length === 1 && data.films[0].endsWith("/films/")) {
       data.films = [];
     }
-    data.eyeColor = data.eyeColor; // Assuming eye_color needs to be converted to eyeColor
+    data.eyeColor = data.eyeColor;
     return data;
   }
 
