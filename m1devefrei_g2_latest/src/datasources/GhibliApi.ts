@@ -17,7 +17,7 @@ export class GhibliApi extends RESTDataSource {
 
     getPeopleByUrls(urls: string[]) {
         return urls
-            .filter(url => url !== `${this.baseURL}people`)
+            .filter(url => url !== `${this.baseURL}people/`)
             .map((url) => this.get<PeopleModel>(url));
     }
 
