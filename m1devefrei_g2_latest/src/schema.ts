@@ -32,9 +32,7 @@ type Query {
   multiply(number1: Int!, number2: Int!): Float
   closestColor(hexa: String!): String
   getTracks: [Track!]!
-  getFilm(id: ID!): Film!
-  getPeople(id: ID!): People!
-  getFilms: [Film!]!
-  getPeoples: [People!]!
+  getPeople:[People]!
+  getFilms: [Film]!
 }
 `

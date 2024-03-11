@@ -44,10 +44,8 @@ export type Query = {
   __typename?: 'Query';
   closestColor?: Maybe<Scalars['String']['output']>;
   divide?: Maybe<Scalars['Float']['output']>;
-  getFilm: Film;
-  getFilms: Array<Film>;
-  getPeople: People;
-  getPeoples: Array<People>;
+  getFilms: Array<Maybe<Film>>;
+  getPeople: Array<Maybe<People>>;
   getTracks: Array<Track>;
   multiply?: Maybe<Scalars['Float']['output']>;
 };
@@ -61,16 +59,6 @@ export type QueryClosestColorArgs = {
 export type QueryDivideArgs = {
   number1: Scalars['Int']['input'];
   number2: Scalars['Int']['input'];
-};
-
-
-export type QueryGetFilmArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
-export type QueryGetPeopleArgs = {
-  id: Scalars['ID']['input'];
 };
 
 
@@ -209,10 +197,8 @@ export type PeopleResolvers<ContextType = DataSourceContext, ParentType extends 
 export type QueryResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   closestColor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<QueryClosestColorArgs, 'hexa'>>;
   divide?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<QueryDivideArgs, 'number1' | 'number2'>>;
-  getFilm?: Resolver<ResolversTypes['Film'], ParentType, ContextType, RequireFields<QueryGetFilmArgs, 'id'>>;
-  getFilms?: Resolver<Array<ResolversTypes['Film']>, ParentType, ContextType>;
-  getPeople?: Resolver<ResolversTypes['People'], ParentType, ContextType, RequireFields<QueryGetPeopleArgs, 'id'>>;
-  getPeoples?: Resolver<Array<ResolversTypes['People']>, ParentType, ContextType>;
+  getFilms?: Resolver<Array<Maybe<ResolversTypes['Film']>>, ParentType, ContextType>;
+  getPeople?: Resolver<Array<Maybe<ResolversTypes['People']>>, ParentType, ContextType>;
   getTracks?: Resolver<Array<ResolversTypes['Track']>, ParentType, ContextType>;
   multiply?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType, RequireFields<QueryMultiplyArgs, 'number1' | 'number2'>>;
 };

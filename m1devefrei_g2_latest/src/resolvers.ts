@@ -17,25 +17,22 @@ export const resolvers: Resolvers = {
       }
       return getClosestColor(hexa, ["#FF5733", "#33FF57", "#3357FF"]);
     },
+
+
     getTracks: (_, __, { dataSources }) => dataSources.trackAPI.getTracks(),
-    getFilm: (_, { id }, { dataSources }) => dataSources.trackAPI.getFilmById(id),
-    getFilms: (_, __, { dataSources }) => dataSources.trackAPI.getFilms(),
-    getPeople: (_, { id }, { dataSources }) => dataSources.trackAPI.getPeopleById(id),
-    getPeoples: (_, __, { dataSources }) => dataSources.trackAPI.getPeoples()
+    getFilms: (_, __, { dataSources }) => dataSources.ghibliapi.getFilms(),
+    getPeople: (_, __, { dataSources }) => dataSources.ghibliapi.getPeople(),
   },
+
   Track: {
     author: (parent, _, { dataSources }) => dataSources.trackAPI.getAuthorBy(parent.authorId)
   },
+
   Film: {
-    people: async (parent, _, { dataSources }) => {
-      const peopleData = await dataSources.trackAPI.getFilmPeoples(parent.people);
-      return peopleData;
-    }
+    people: (parent, _, { dataSources }) => dataSources.ghibliapi.getPeopleByUrls(parent.people)
   },
   People: {
-    films: async (parent, _, { dataSources }) => {
-      const filmsData = await dataSources.trackAPI.getPeopleFilms(parent.films);
-      return filmsData;
-    }
+    eyeColor: ({ eye_color }) => eye_color,
+    films: ({ films }, _, { dataSources }) => dataSources.ghibliapi.getFilmByUrls(films)
   }
 };
